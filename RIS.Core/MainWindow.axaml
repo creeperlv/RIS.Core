@@ -33,12 +33,12 @@
 			<RowDefinition Height="1*"/>
 		</Grid.RowDefinitions>
 		<Grid Grid.Row="0" IsHitTestVisible="False">
-			<Grid Background="#8333" Margin="10,5,0,0" HorizontalAlignment="Left">
+			<Grid Background="#8333" Margin="12,5,0,0" HorizontalAlignment="Left">
 				<TextBlock Text="Risk Information System" Margin="5"/>
 			</Grid>
 		</Grid>
 		<Grid Grid.Row="1" Background="#8333">
-			<StackPanel Orientation="Horizontal">
+			<StackPanel Orientation="Horizontal" Margin="10,0">
 				<Button Classes="RibbonButton" Name="Button_OpenProj">
 					<StackPanel>
 						<Viewbox Width="42" Height="42">
@@ -89,7 +89,7 @@
 			</Grid.ColumnDefinitions>
 			<Grid Background="#8333">
 				<!--Files-->
-				<ListBox Background="Transparent" Name="SheetItemPresenter">
+				<ListBox Background="Transparent" Margin="10,0,0,10" Name="SheetItemPresenter">
 				</ListBox>
 			</Grid>
 			<GridSplitter Grid.Column="1" Foreground="#8444" Background="#8444">
@@ -152,7 +152,7 @@
 					<StackPanel VerticalAlignment="Center">
 						<TextBlock TextAlignment="Center" FontSize="32" Text="It's Empty Here"/>
 						<TextBlock Name="Hint0" TextAlignment="Center" FontSize="18" Text="Create or Open A Project First"/>
-						<TextBlock Name="Hint1" TextAlignment="Center" FontSize="18" Text="Add A Sheet First"/>
+						<TextBlock Name="Hint1" TextAlignment="Center" FontSize="18" Text="Select or Add A Sheet First"/>
 					</StackPanel>
 				</Grid>
 			</Grid>

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace RIS.Core
 {
@@ -17,7 +18,20 @@ namespace RIS.Core
             InitializeComponent();
             this.ExtendClientAreaChromeHints = ExtendClientAreaChromeHints.PreferSystemChrome;
             this.ExtendClientAreaToDecorationsHint = true;
-            TransparencyLevelHint = WindowTransparencyLevel.Mica;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                if (Environment.OSVersion.Version.Major >= 10)
+                {
+                    if (Environment.OSVersion.Version.Build >= 22000)
+                    {
+                        TransparencyLevelHint = WindowTransparencyLevel.Mica;
+                    }
+                    else
+                    {
+                        TransparencyLevelHint = WindowTransparencyLevel.AcrylicBlur;
+                    }
+                }
+            }
             Hint0.IsVisible = true;
             Hint1.IsVisible = false;
             HintGrid.IsVisible = true;
@@ -41,7 +55,7 @@ namespace RIS.Core
                 SaveFileDialog SFD = new SaveFileDialog();
                 SFD.Filters.Add(new FileDialogFilter { Extensions = new List<string> { ".proj" }, Name = "Project File" });
                 var file = await SFD.ShowAsync(this);
-                
+
                 if (file is not null)
                 {
                     var File = new FileInfo(file);
@@ -161,10 +175,10 @@ namespace RIS.Core
             CurrentDirectory = Directory;
             Hint0.IsVisible = false;
             Hint1.IsVisible = true;
-            var files = Directory.EnumerateFiles().OrderBy(p=>p.CreationTime);
+            var files = Directory.EnumerateFiles().OrderBy(p => p.CreationTime);
             int i = 0;
             ListFileMap.Clear();
-            RISMap.Clear(); 
+            RISMap.Clear();
             items.Clear();
             foreach (var item in files)
             {
@@ -190,12 +204,12 @@ namespace RIS.Core
             }
             SheetItemPresenter.Items = null;
             SheetItemPresenter.Items = items;
-            
+
         }
-        JsonSerializerSettings JsonSerializerSettings=new JsonSerializerSettings { NullValueHandling= NullValueHandling.Ignore, DefaultValueHandling= DefaultValueHandling.Ignore };
+        JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore };
         RISItemData? LoadSingleFile(FileInfo file)
         {
-            return JsonConvert.DeserializeObject<RISItemData>(File.ReadAllText(file.FullName!)!,JsonSerializerSettings);
+            return JsonConvert.DeserializeObject<RISItemData>(File.ReadAllText(file.FullName!)!, JsonSerializerSettings);
         }
     }
 }
