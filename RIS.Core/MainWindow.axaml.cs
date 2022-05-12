@@ -121,6 +121,10 @@ namespace RIS.Core
                 {
                 }
             };
+            Button_About.Click += async (_, _) => {
+                AboutWindow aboutWindow = new AboutWindow();
+                await aboutWindow.ShowDialog(this);
+            };
         }
         DirectoryInfo? CurrentDirectory;
         void ApplyInfomation(RISItemData? data)

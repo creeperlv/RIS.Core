@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" Width="450" Height="250"
+        x:Class="RIS.Core.AboutWindow" Background="#8000"
+        Title="AboutWindow">
+	<Window.Styles>
+		<Style Selector="TextBlock">
+			<Setter Property="TextAlignment" Value="Center"/>
+		</Style>
+	</Window.Styles>
+	<StackPanel IsHitTestVisible="False" Background="#8000">
+		<Grid Margin="0,30,0,0">
+
+			<TextBlock Text="RIS.Core" FontSize="36" FontWeight="Light" Foreground="#44AAFF" TextAlignment="Center"/>
+			<Border HorizontalAlignment="Center" VerticalAlignment="Top" Margin="200,0,0,0" BorderThickness="1" BorderBrush="#C08030">
+				<TextBlock Text="Technical Preview" FontSize="10" Margin="1" Foreground="#C08030"/>
+			</Border>
+		</Grid>
+		<TextBlock Text="Version:" Name="VersionText"/>
+		<TextBlock Text="Code: Creeper Lv"/>
+		<TextBlock Text="Design: Creeper Lv"/>
+		<TextBlock Text="Third-Party Libs" FontSize="20"/>
+		<TextBlock Text="AvaloniaUI"/>
+		<TextBlock Text="Newtonsoft.Json"/>
+	</StackPanel>
+</Window>
